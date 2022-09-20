@@ -16,6 +16,7 @@
     "start:prod": "node dist/main",
     "lint": "eslint \"{src,apps,libs,test}/**/*.ts\" --fix",
     "test": "jest",
+    "test:ci": "npm test -- --coverage",
     "test:watch": "jest --watch",
     "test:cov": "jest --coverage",
     "test:debug": "node --inspect-brk -r tsconfig-paths/register -r ts-node/register node_modules/.bin/jest --runInBand",
@@ -67,15 +68,21 @@
       "json",
       "ts"
     ],
-    "rootDir": "src",
+    "roots": ["<rootDir>/src"],
     "testRegex": ".*\\.spec\\.ts$",
     "transform": {
       "^.+\\.(t|j)s$": "ts-jest"
     },
     "collectCoverageFrom": [
-      "**/*.(t|j)s"
+      "<rootDir>/src/**/*.ts",
+      "!<rootDir>/src/common/**",
+      "!<rootDir>/src/**/exceptions/**",
+      "!<rootDir>/src/**/repositories/schemas/**",
+      "!<rootDir>/src/**/lambdas/**",
+      "!<rootDir>/src/**/*.module.ts",
+      "!<rootDir>/src/**/handlers.ts"
     ],
-    "coverageDirectory": "../coverage",
+    "coverageDirectory": "coverage",
     "testEnvironment": "node"
   }
 }

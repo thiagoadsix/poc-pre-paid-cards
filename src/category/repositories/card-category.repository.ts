@@ -15,11 +15,8 @@ export class CardCategoryRepository {
     this.model = model;
   }
 
-  async create(category: any): Promise<void> {
-    this.model.create({ ...category });
-  }
-
-  async get(companyId: string): Promise<any> {
-    return this.model.get({ companyId });
+  async create(input: CardCategorySchema): Promise<any> {
+    const cardCategory = await this.model.create({ ...input });
+    return cardCategory;
   }
 }
