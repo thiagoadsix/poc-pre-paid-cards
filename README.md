@@ -32,17 +32,30 @@
 $ npm install
 ```
 
+## Setting Up LocalStack
+```bash
+$ docker-compose up
+```
+
+## Create Category Table
+```bash
+$ aws dynamodb create-table \                                  
+--table-name CarCategory \
+--attribute-definitions \
+AttributeName=companyId,AttributeType=S \
+--key-schema \
+AttributeName=companyId,KeyType=HASH \
+--provisioned-throughput \
+ReadCapacityUnits=5,WriteCapacityUnits=5 \
+--table-class STANDARD \
+--endpoint-url=http://localhost:4566
+```
+
 ## Running the app
 
 ```bash
 # development
-$ npm run start
-
-# watch mode
-$ npm run start:dev
-
-# production mode
-$ npm run start:prod
+$ npm run offline
 ```
 
 ## Test
@@ -50,9 +63,6 @@ $ npm run start:prod
 ```bash
 # unit tests
 $ npm run test
-
-# e2e tests
-$ npm run test:e2e
 
 # test coverage
 $ npm run test:cov
