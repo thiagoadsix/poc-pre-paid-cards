@@ -1,15 +1,15 @@
 import { Module } from '@nestjs/common';
 import { DynamooseModule } from 'nestjs-dynamoose';
-import { CardCategoryRepository } from './card-category.repository';
-import { CardCategorySchema } from './schemas/card-category.schema';
+import { CategoryRepository } from './category.repository';
+import { CategorySchema } from './schemas/category.schema';
 
 @Module({
   imports: [
     DynamooseModule.forFeature([
-      { name: 'CardCategory', schema: CardCategorySchema.schema() },
+      { name: 'CardCategory', schema: CategorySchema.schema() },
     ]),
   ],
-  providers: [CardCategoryRepository],
-  exports: [CardCategoryRepository],
+  providers: [CategoryRepository],
+  exports: [CategoryRepository],
 })
 export class RepositoryModule {}

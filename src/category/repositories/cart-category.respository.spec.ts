@@ -1,25 +1,22 @@
 import { Test, TestingModule } from '@nestjs/testing';
 import { getModelToken, Model } from 'nestjs-dynamoose';
-import { CardCategoryRepository } from './card-category.repository';
-import {
-  CardCategoryKey,
-  CardCategorySchema,
-} from './schemas/card-category.schema';
+import { CategoryRepository } from './category.repository';
+import { CategoryKey, CategorySchema } from './schemas/category.schema';
 
-const mockCardCategory = (
+const mockCategory = (
   name = 'Test Category',
   companyId = 'cd144497-1478-4c7e-99e2-b7647e87fda0',
   color = '#E0BB22',
-): CardCategorySchema => ({ name, companyId, color });
+): CategorySchema => ({ name, companyId, color });
 
-describe('Testing Card Category Repository', () => {
-  let repository: CardCategoryRepository;
-  let model: Model<CardCategorySchema, CardCategoryKey>;
+describe('Testing Category Repository', () => {
+  let repository: CategoryRepository;
+  let model: Model<CategorySchema, CategoryKey>;
 
   beforeEach(async () => {
     const module: TestingModule = await Test.createTestingModule({
       providers: [
-        CardCategoryRepository,
+        CategoryRepository,
         {
           provide: getModelToken('CardCategory'),
           useValue: {
@@ -29,8 +26,8 @@ describe('Testing Card Category Repository', () => {
       ],
     }).compile();
 
-    repository = module.get<CardCategoryRepository>(CardCategoryRepository);
-    model = module.get<Model<CardCategorySchema, CardCategoryKey>>(
+    repository = module.get<CategoryRepository>(CategoryRepository);
+    model = module.get<Model<CategorySchema, CategoryKey>>(
       getModelToken('CardCategory'),
     );
   });
@@ -46,13 +43,13 @@ describe('Testing Card Category Repository', () => {
   test('should create a category', async () => {
     jest
       .spyOn(model, 'create')
-      .mockImplementationOnce(() => Promise.resolve(mockCardCategory()));
-    const cardCategory = await repository.create({
+      .mockImplementationOnce(() => Promise.resolve(mockCategory()));
+    const category = await repository.create({
       name: 'Test Category',
       companyId: 'cd144497-1478-4c7e-99e2-b7647e87fda0',
       color: '#E0BB22',
     });
 
-    expect(cardCategory).toBeTruthy();
+    expect(category).toBeTruthy();
   });
 });

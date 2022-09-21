@@ -1,10 +1,10 @@
 import { Schema } from 'dynamoose';
 
-export type CardCategoryKey = {
+export type CategoryKey = {
   companyId: string;
 };
 
-export class CardCategorySchema {
+export class CategorySchema {
   companyId: string;
   name: string;
   color: string;

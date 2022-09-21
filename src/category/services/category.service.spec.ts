@@ -1,16 +1,16 @@
 import { Test, TestingModule } from '@nestjs/testing';
-import { CardCategorySchema } from '../repositories/schemas/card-category.schema';
+import { CategorySchema } from '../repositories/schemas/category.schema';
 import { CategoryService } from './category.service';
 import { RepositoryModule } from '../repositories/repository.module';
 import { DynamooseModule } from 'nestjs-dynamoose';
 
-const mockCardCategory = (
+const mockCategory = (
   name = 'Test Category',
   companyId = 'cd144497-1478-4c7e-99e2-b7647e87fda0',
   color = '#E0BB22',
-): CardCategorySchema => ({ name, companyId, color });
+): CategorySchema => ({ name, companyId, color });
 
-describe('Testing Card Category Service', () => {
+describe('Testing Category Service', () => {
   let service: CategoryService;
 
   beforeEach(async () => {
@@ -32,7 +32,7 @@ describe('Testing Card Category Service', () => {
 
   test('should create with correct values', async () => {
     const createSpy = jest.spyOn(service, 'create');
-    service.create(mockCardCategory());
-    expect(createSpy).toHaveBeenCalledWith(mockCardCategory());
+    service.create(mockCategory());
+    expect(createSpy).toHaveBeenCalledWith(mockCategory());
   });
 });

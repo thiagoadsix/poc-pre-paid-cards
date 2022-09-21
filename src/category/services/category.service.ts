@@ -1,14 +1,14 @@
 import { Injectable } from '@nestjs/common';
-import { CardCategoryRepository } from '../repositories/card-category.repository';
-import { CardCategorySchema } from '../repositories/schemas/card-category.schema';
+import { CategoryRepository } from '../repositories/category.repository';
+import { CategorySchema } from '../repositories/schemas/category.schema';
 
 @Injectable()
 export class CategoryService {
-  constructor(private readonly cardCategoryRepository: CardCategoryRepository) {
-    this.cardCategoryRepository = cardCategoryRepository;
+  constructor(private readonly categoryRepository: CategoryRepository) {
+    this.categoryRepository = categoryRepository;
   }
 
-  async create(category: CardCategorySchema): Promise<void> {
-    await this.cardCategoryRepository.create(category);
+  async create(category: CategorySchema): Promise<void> {
+    await this.categoryRepository.create(category);
   }
 }
