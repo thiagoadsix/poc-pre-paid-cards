@@ -30,7 +30,7 @@ export class CreateCategoryLambda implements HandlerInterface {
       }
 
       try {
-        const resp = await appService.createCategory(request);
+        const resp = await appService.create(request);
 
         console.log(`Finishing lambda: ${context.functionName}`);
 

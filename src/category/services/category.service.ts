@@ -1,6 +1,6 @@
-import { HttpStatus, Injectable } from '@nestjs/common';
-import { CustomException } from '../exceptions/custom.exception';
+import { Injectable } from '@nestjs/common';
 import { CardCategoryRepository } from '../repositories/card-category.repository';
+import { CardCategorySchema } from '../repositories/schemas/card-category.schema';
 
 @Injectable()
 export class CategoryService {
@@ -8,12 +8,7 @@ export class CategoryService {
     this.cardCategoryRepository = cardCategoryRepository;
   }
 
-  async createCategory(category: any): Promise<void> {
-    throw new CustomException(
-      'Custom Exception',
-      1,
-      HttpStatus.UNPROCESSABLE_ENTITY,
-    );
+  async create(category: CardCategorySchema): Promise<void> {
     await this.cardCategoryRepository.create(category);
   }
 }

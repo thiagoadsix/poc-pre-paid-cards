@@ -10,7 +10,7 @@ provider:
 
 functions:
   create-category:
-    handler: dist/category/handlers.createCategory
+    handler: dist/category/handlers.create
     events:
       - http:
           method: POST
