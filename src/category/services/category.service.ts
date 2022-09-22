@@ -1,6 +1,6 @@
 import { Injectable } from '@nestjs/common';
+import { Category } from '../entities/category';
 import { CategoryRepository } from '../repositories/category.repository';
-import { CategorySchema } from '../repositories/schemas/category.schema';
 
 @Injectable()
 export class CategoryService {
@@ -8,7 +8,7 @@ export class CategoryService {
     this.categoryRepository = categoryRepository;
   }
 
-  async create(category: CategorySchema): Promise<void> {
+  async create(category: Category): Promise<void> {
     await this.categoryRepository.create(category);
   }
 }

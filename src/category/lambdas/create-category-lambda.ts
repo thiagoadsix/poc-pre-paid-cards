@@ -8,6 +8,7 @@ import { CreateCategoryRequest } from './requests/create-category.request';
 import { CategoryService } from '../services/category.service';
 import { HandlerResponse } from '../../common/aws/handler/handler.response';
 import { ExceptionFilter } from '../../common/filters/exception.filter';
+import { Category } from '../entities/category';
 
 export class CreateCategoryLambda implements HandlerInterface {
   async handler(event: APIGatewayEvent, context: Context): Promise<any> {
@@ -30,7 +31,12 @@ export class CreateCategoryLambda implements HandlerInterface {
       }
 
       try {
-        const resp = await appService.create(request);
+        const entity = new Category(
+          request.companyId,
+          request.name,
+          request.color,
+        );
+        const resp = await appService.create(entity);
 
         console.log(`Finishing lambda: ${context.functionName}`);
 
