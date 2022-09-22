@@ -12,6 +12,8 @@ import { Category } from '../entities/category';
 
 export class CreateCategoryLambda implements HandlerInterface {
   async handler(event: APIGatewayEvent, context: Context): Promise<any> {
+    console.log('Event', JSON.stringify(event));
+
     try {
       console.log(`Stating lambda: ${context.functionName}`);
 
@@ -22,7 +24,11 @@ export class CreateCategoryLambda implements HandlerInterface {
       const appService = appContext.get(CategoryService);
 
       const input = JSON.parse(event.body);
-      const request = new CreateCategoryRequest(input);
+      const mergeObjects = Object.assign({}, input, {
+        companyId: event.requestContext.authorizer.claims['custom:companyId'],
+      });
+
+      const request = new CreateCategoryRequest(mergeObjects);
 
       try {
         await validateOrReject(request);

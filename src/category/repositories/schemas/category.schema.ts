@@ -1,5 +1,4 @@
 import { Schema } from 'dynamoose';
-import { v4 as uuid } from 'uuid';
 
 export type CategoryKey = {
   companyId: string;
@@ -21,7 +20,7 @@ export class CategorySchema {
       },
       categoryId: {
         type: String,
-        default: uuid(),
+        rangeKey: true,
       },
       name: {
         type: String,
