@@ -80,6 +80,7 @@
       "<rootDir>/src/**/*.ts",
       "!<rootDir>/src/common/**",
       "!<rootDir>/src/**/exceptions/**",
+      "!<rootDir>/src/**/entities/**",
       "!<rootDir>/src/**/repositories/schemas/**",
       "!<rootDir>/src/**/lambdas/**",
       "!<rootDir>/src/**/*.module.ts",

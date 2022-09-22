@@ -1,14 +1,8 @@
 import { Test, TestingModule } from '@nestjs/testing';
-import { CategorySchema } from '../repositories/schemas/category.schema';
 import { CategoryService } from './category.service';
 import { RepositoryModule } from '../repositories/repository.module';
 import { DynamooseModule } from 'nestjs-dynamoose';
-
-const mockCategory = (
-  name = 'Test Category',
-  companyId = 'cd144497-1478-4c7e-99e2-b7647e87fda0',
-  color = '#E0BB22',
-): CategorySchema => ({ name, companyId, color });
+import { Category } from '../entities/category';
 
 describe('Testing Category Service', () => {
   let service: CategoryService;
@@ -31,8 +25,13 @@ describe('Testing Category Service', () => {
   });
 
   test('should create with correct values', async () => {
+    const entity = new Category(
+      'cd144497-1478-4c7e-99e2-b7647e87fda0',
+      'Test Category',
+      '#E0BB22',
+    );
     const createSpy = jest.spyOn(service, 'create');
-    service.create(mockCategory());
-    expect(createSpy).toHaveBeenCalledWith(mockCategory());
+    service.create(entity);
+    expect(createSpy).toHaveBeenCalledWith(entity);
   });
 });

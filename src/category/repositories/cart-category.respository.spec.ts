@@ -1,5 +1,6 @@
 import { Test, TestingModule } from '@nestjs/testing';
 import { getModelToken, Model } from 'nestjs-dynamoose';
+import { Category } from '../entities/category';
 import { CategoryRepository } from './category.repository';
 import { CategoryKey, CategorySchema } from './schemas/category.schema';
 
@@ -44,11 +45,12 @@ describe('Testing Category Repository', () => {
     jest
       .spyOn(model, 'create')
       .mockImplementationOnce(() => Promise.resolve(mockCategory()));
-    const category = await repository.create({
-      name: 'Test Category',
-      companyId: 'cd144497-1478-4c7e-99e2-b7647e87fda0',
-      color: '#E0BB22',
-    });
+    const entity = new Category(
+      'cd144497-1478-4c7e-99e2-b7647e87fda0',
+      'Test Category',
+      '#E0BB22',
+    );
+    const category = await repository.create(entity);
 
     expect(category).toBeTruthy();
   });
