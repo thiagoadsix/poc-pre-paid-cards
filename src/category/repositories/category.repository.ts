@@ -1,6 +1,5 @@
 import { Injectable } from '@nestjs/common';
 import { InjectModel, Model } from 'nestjs-dynamoose';
-import { v4 as uuid } from 'uuid';
 
 import { Category } from '../entities/category';
 
@@ -20,7 +19,6 @@ export class CategoryRepository {
       companyId: input.companyId,
       name: input.name,
       color: input.color,
-      categoryId: uuid(),
     });
 
     const entity = new Category(
