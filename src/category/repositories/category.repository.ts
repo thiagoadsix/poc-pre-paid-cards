@@ -16,9 +16,9 @@ export class CategoryRepository {
 
   async create(input: Category): Promise<Category> {
     const category = await this.model.create({
-      companyId: input.companyId,
-      name: input.name,
-      color: input.color,
+      companyId: input.getCompanyId,
+      name: input.getName,
+      color: input.getColor,
     });
 
     const entity = new Category(
@@ -27,10 +27,28 @@ export class CategoryRepository {
       category.color,
     );
 
-    entity.categoryId = category.categoryId;
-    entity.createdAt = category.createdAt;
-    entity.updatedAt = category.updatedAt;
+    entity.setCategoryId = category.categoryId;
+    entity.setCreatedAt = category.createdAt;
+    entity.setUpdatedAt = category.updatedAt;
 
     return entity;
+  }
+
+  async findAll(companyId: string): Promise<Category[]> {
+    const model = await this.model.query('companyId').eq(companyId).exec();
+
+    return model.map((category) => {
+      const entity = new Category(
+        category.companyId,
+        category.name,
+        category.color,
+      );
+
+      entity.setCategoryId = category.categoryId;
+      entity.setCreatedAt = category.createdAt;
+      entity.setUpdatedAt = category.updatedAt;
+
+      return entity;
+    });
   }
 }
