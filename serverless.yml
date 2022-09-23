@@ -1,6 +1,8 @@
 service: pre-paid-cards
 
 plugins:
+  - serverless-middleware
+  - serverless-webpack
   - serverless-offline
 
 provider:
@@ -8,10 +10,24 @@ provider:
   runtime: nodejs16.x
   region: us-east-1
 
+custom:
+  webpack:
+    webpackConfig: ./webpack.config.js
+    includeModules: true
+  middleware:
+    pre:
+      - src/common/middlewares/function-role-middleware.check
+
 functions:
   create-category:
     handler: dist/category/handlers.create
     events:
       - http:
           method: POST
+          path: /category
+  find-all-category:
+    handler: dist/category/handlers.findAll
+    events:
+      - http:
+          method: GET
           path: /category

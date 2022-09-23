@@ -13,10 +13,13 @@
     "incremental": true,
     "skipLibCheck": true,
     "strictNullChecks": false,
-    "noImplicitAny": false,
     "strictBindCallApply": false,
     "forceConsistentCasingInFileNames": false,
     "noFallthroughCasesInSwitch": false,
-    "esModuleInterop": true
-  }
+    "esModuleInterop": true,
+    "moduleResolution": "Node16",
+    "noUnusedLocals": false,
+    "noUnusedParameters": true,
+  },
+  "exclude": ["node_modules"],
 }
