@@ -34,4 +34,12 @@ describe('Testing Category Service', () => {
     service.create(entity);
     expect(createSpy).toHaveBeenCalledWith(entity);
   });
+
+  test('should call findAll from CategoryRepository with correct values', async () => {
+    const findAllSpy = jest.spyOn(service, 'findAll');
+    service.findAll('cd144497-1478-4c7e-99e2-b7647e87fda0');
+    expect(findAllSpy).toHaveBeenCalledWith(
+      'cd144497-1478-4c7e-99e2-b7647e87fda0',
+    );
+  });
 });
