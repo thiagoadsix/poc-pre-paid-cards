@@ -11,4 +11,8 @@ export class CategoryService {
   async create(category: Category): Promise<void> {
     await this.categoryRepository.create(category);
   }
+
+  async findAll(companyId: string): Promise<Category[]> {
+    return await this.categoryRepository.findAll(companyId);
+  }
 }
