@@ -1,12 +1,22 @@
 service: pre-paid-cards
 
 plugins:
+  - serverless-middleware
+  - serverless-webpack
   - serverless-offline
 
 provider:
   name: aws
   runtime: nodejs16.x
   region: us-east-1
+
+custom:
+  webpack:
+    webpackConfig: ./webpack.config.js
+    includeModules: true
+  middleware:
+    pre:
+      - src/common/middlewares/function-role-middleware.check
 
 functions:
   create-category:
