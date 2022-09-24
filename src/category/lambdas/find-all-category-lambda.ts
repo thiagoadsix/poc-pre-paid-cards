@@ -11,8 +11,6 @@ import { FindAllCategoryRequest } from './requests/find-all-category.request';
 
 export class FindAllCategoryLambda implements HandlerInterface {
   async handler(event: APIGatewayEvent, context: Context): Promise<any> {
-    console.log('Event', JSON.stringify(event));
-
     try {
       console.log(`Stating lambda: ${context.functionName}`);
 

@@ -12,8 +12,6 @@ import { Category } from '../entities/category';
 
 export class CreateCategoryLambda implements HandlerInterface {
   async handler(event: APIGatewayEvent, context: Context): Promise<any> {
-    console.log('Event', JSON.stringify(event));
-
     try {
       console.log(`Stating lambda: ${context.functionName}`);
 

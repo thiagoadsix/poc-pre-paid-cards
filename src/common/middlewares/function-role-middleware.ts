@@ -9,7 +9,7 @@ export const check = async (
   event: APIGatewayEvent,
   context: MiddlewareContext,
 ) => {
-  console.log('Event', JSON.stringify(event));
+  console.log('Event =>', JSON.stringify(event));
   try {
     const mfaStatus =
       event.requestContext.authorizer?.claims['custom:MFA_STATUS'];
