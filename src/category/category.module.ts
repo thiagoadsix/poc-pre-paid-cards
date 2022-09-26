@@ -1,7 +1,7 @@
-import { Module } from '@nestjs/common';
-import { DynamooseModule } from 'nestjs-dynamoose';
-import { RepositoryModule } from './repositories/repository.module';
-import { CategoryService } from './services/category.service';
+import { Module } from '@nestjs/common'
+import { DynamooseModule } from 'nestjs-dynamoose'
+import { RepositoryModule } from './repositories/repository.module'
+import { CategoryService } from './services/category.service'
 
 @Module({
   imports: [

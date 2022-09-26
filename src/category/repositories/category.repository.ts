@@ -1,9 +1,9 @@
-import { Injectable } from '@nestjs/common';
-import { InjectModel, Model } from 'nestjs-dynamoose';
+import { Injectable } from '@nestjs/common'
+import { InjectModel, Model } from 'nestjs-dynamoose'
 
-import { Category } from '../entities/category';
+import { Category } from '../entities/category'
 
-import { CategoryKey, CategorySchema } from './schemas/category.schema';
+import { CategoryKey, CategorySchema } from './schemas/category.schema'
 
 @Injectable()
 export class CategoryRepository {
@@ -11,7 +11,7 @@ export class CategoryRepository {
     @InjectModel('CardCategory')
     private readonly model: Model<CategorySchema, CategoryKey>,
   ) {
-    this.model = model;
+    this.model = model
   }
 
   async create(input: Category): Promise<Category> {
@@ -19,36 +19,28 @@ export class CategoryRepository {
       companyId: input.getCompanyId,
       name: input.getName,
       color: input.getColor,
-    });
+    })
 
-    const entity = new Category(
-      category.companyId,
-      category.name,
-      category.color,
-    );
+    const entity = new Category(category.companyId, category.name, category.color)
 
-    entity.setCategoryId = category.categoryId;
-    entity.setCreatedAt = category.createdAt;
-    entity.setUpdatedAt = category.updatedAt;
+    entity.setCategoryId = category.categoryId
+    entity.setCreatedAt = category.createdAt
+    entity.setUpdatedAt = category.updatedAt
 
-    return entity;
+    return entity
   }
 
   async findAll(companyId: string): Promise<Category[]> {
-    const model = await this.model.query('companyId').eq(companyId).exec();
+    const model = await this.model.query('companyId').eq(companyId).exec()
 
     return model.map((category) => {
-      const entity = new Category(
-        category.companyId,
-        category.name,
-        category.color,
-      );
+      const entity = new Category(category.companyId, category.name, category.color)
 
-      entity.setCategoryId = category.categoryId;
-      entity.setCreatedAt = category.createdAt;
-      entity.setUpdatedAt = category.updatedAt;
+      entity.setCategoryId = category.categoryId
+      entity.setCreatedAt = category.createdAt
+      entity.setUpdatedAt = category.updatedAt
 
-      return entity;
-    });
+      return entity
+    })
   }
 }

@@ -1,17 +1,17 @@
-import { Schema } from 'dynamoose';
-import { v4 as uuid } from 'uuid';
+import { Schema } from 'dynamoose'
+import { v4 as uuid } from 'uuid'
 
 export type CategoryKey = {
-  companyId: string;
-};
+  companyId: string
+}
 
 export class CategorySchema {
-  companyId: string;
-  name: string;
-  color: string;
-  categoryId?: string;
-  createdAt?: string;
-  updatedAt?: string;
+  companyId: string
+  name: string
+  color: string
+  categoryId?: string
+  createdAt?: string
+  updatedAt?: string
 
   public static schema() {
     return new Schema({
@@ -38,6 +38,6 @@ export class CategorySchema {
         type: String,
         default: new Date().toString(),
       },
-    });
+    })
   }
 }

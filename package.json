@@ -54,6 +54,7 @@
     "eslint-plugin-prettier": "^4.0.0",
     "jest": "28.1.2",
     "prettier": "^2.3.2",
+    "serverless-auto-swagger": "^2.8.2",
     "serverless-middleware": "^3.0.0",
     "serverless-offline": "^10.0.0",
     "serverless-webpack": "^5.9.1",

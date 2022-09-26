@@ -1,25 +1,21 @@
-import { APIGatewayEvent, Context } from 'aws-lambda';
+import { APIGatewayEvent, Context } from 'aws-lambda'
 
 type MiddlewareContext<TResult = any> = Context & {
-  end: () => void;
-  prev: TResult;
-};
+  end: () => void
+  prev: TResult
+}
 
-export const check = async (
-  event: APIGatewayEvent,
-  context: MiddlewareContext,
-) => {
-  console.log('Event =>', JSON.stringify(event));
+export const check = async (event: APIGatewayEvent, context: MiddlewareContext) => {
+  console.log('Event =>', JSON.stringify(event))
   try {
-    const mfaStatus =
-      event.requestContext.authorizer?.claims['custom:MFA_STATUS'];
+    const mfaStatus = event.requestContext.authorizer?.claims['custom:MFA_STATUS']
 
-    if (mfaStatus === 'ACTIVE') return true;
+    if (mfaStatus === 'ACTIVE') return true
 
-    throw new Error('MFA is not activated.');
+    throw new Error('MFA is not activated.')
   } catch (error) {
-    console.error('Company with MFA deactivated.', JSON.stringify(error));
-    context.end();
+    console.error('Company with MFA deactivated.', JSON.stringify(error))
+    context.end()
 
     return {
       headers: {
@@ -33,6 +29,6 @@ export const check = async (
         message: 'Ativar múltiplo fator de autenticacão!',
         messages: ['Ativar múltiplo fator de autenticacão!'],
       }),
-    };
+    }
   }
-};
+}

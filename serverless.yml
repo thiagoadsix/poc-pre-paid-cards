@@ -1,6 +1,7 @@
 service: pre-paid-cards
 
 plugins:
+  - serverless-auto-swagger
   - serverless-middleware
   - serverless-webpack
   - serverless-offline
@@ -14,9 +15,16 @@ custom:
   webpack:
     webpackConfig: ./webpack.config.js
     includeModules: true
-  middleware:
-    pre:
-      - src/common/middlewares/function-role-middleware.check
+  # middleware:
+  #   pre:
+  #     - src/common/middlewares/function-role-middleware.check
+  autoswagger:
+    typefiles: ['./src/types/api-types.d.ts']
+    generateSwaggerOnDeploy: true
+    basePath: '/doc'
+    host: 'http://0.0.0.0:3000'
+    schemes: ['http', 'https', 'ws', 'wss']
+    excludeStages: ['production', 'anyOtherStage']
 
 functions:
   create-category:

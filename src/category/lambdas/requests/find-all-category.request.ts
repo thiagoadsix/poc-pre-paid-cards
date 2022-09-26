@@ -1,11 +1,11 @@
-import { IsNotEmpty, IsUUID } from 'class-validator';
+import { IsNotEmpty, IsUUID } from 'class-validator'
 
 export class FindAllCategoryRequest {
   @IsNotEmpty()
   @IsUUID()
-  companyId: string;
+  companyId: string
 
   constructor(obj: Partial<FindAllCategoryRequest>) {
-    Object.assign(this, obj);
+    Object.assign(this, obj)
   }
 }

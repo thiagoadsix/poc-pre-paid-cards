@@ -2,8 +2,6 @@ const path = require('path');
 const serverlessWebpack = require('serverless-webpack');
 const nodeExternals = require('webpack-node-externals');
 
-console.log(__dirname);
-
 module.exports = {
   context: __dirname,
   mode: serverlessWebpack.lib.webpack.isLocal ? 'development' : 'production',

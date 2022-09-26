@@ -1,19 +1,19 @@
-import { IsHexColor, IsNotEmpty, IsString, IsUUID } from 'class-validator';
+import { IsHexColor, IsNotEmpty, IsString, IsUUID } from 'class-validator'
 
 export class CreateCategoryRequest {
   @IsNotEmpty()
   @IsString()
-  name: string;
+  name: string
 
   @IsNotEmpty()
   @IsUUID()
-  companyId: string;
+  companyId: string
 
   @IsNotEmpty()
   @IsHexColor()
-  color: string;
+  color: string
 
   constructor(obj: Partial<CreateCategoryRequest>) {
-    Object.assign(this, obj);
+    Object.assign(this, obj)
   }
 }

@@ -12,6 +12,6 @@ export class HandlerResponse {
         'Access-Control-Allow-Origin': '*',
       },
       body: JSON.stringify(message),
-    };
+    }
   }
 }
